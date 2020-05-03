@@ -1,5 +1,6 @@
 const { writeFile } = require('fs');
 const babel = require('@babel/core');
+const t = require('@babel/types');
 const jsxPlugin = require('@babel/plugin-transform-react-jsx');
 
 const input = require('./fixtures/icon/code');
@@ -11,11 +12,16 @@ const output = babel.transformSync(input, {
       return {
         visitor: {
           ImportDeclaration(path, state) {
-            console.log({ hello: path.node.specifiers[0].local.name });
-            // console.log(path.node.source.value);
             if (path.node.source.value !== '@tenjojeremy/web-toolkit/dataDisplay/icon')
               return;
-            path.node.source.value = '@tenjojeremy/web-toolkit/dataDisplay/icons/';
+
+            // remove Icon import
+            path.remove();
+            // get icon name
+            // remove icon name="" text
+            // add icon import
+            // path.node.source.value = '';
+            // path.node.specifiers = '';
           },
         },
       };

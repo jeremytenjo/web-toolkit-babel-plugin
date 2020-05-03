@@ -1,5 +1,4 @@
-import React from 'react';
-import Icon from "@tenjojeremy/web-toolkit/dataDisplay/icondfds/";
+import React from 'resact';
 
 const Button = () => {
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Icon, {
