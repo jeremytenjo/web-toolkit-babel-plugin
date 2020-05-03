@@ -4,12 +4,13 @@
   "description": "Web toolkit babel plugin",
   "main": "src/index.js",
   "scripts": {
-    "start": "jest src/",
+    "start": "node ./src/index ",
     "test": "jest src/"
   },
   "dependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
+    "@babel/plugin-transform-react-jsx": "^7.9.4",
     "@tenjojeremy/prettier-config": "^0.5.0",
     "babel-plugin-tester": "^9.0.1",
     "jest": "^25.5.4",
