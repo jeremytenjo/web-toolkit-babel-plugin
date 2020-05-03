@@ -2,9 +2,11 @@ module.exports = ({ types: t }) => {
   return {
     visitor: {
       ImportDeclaration(path) {
-        if (path.node.source.value !== 'use-css') return
-        path.remove()
-      }
-    }
-  }
-}
+        console.log(path.node.source.value);
+        if (path.node.source.value !== '@tenjojeremy/web-toolkit/dataDisplay/icon')
+          return;
+        path.remove();
+      },
+    },
+  };
+};

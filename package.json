@@ -4,13 +4,15 @@
   "description": "Web toolkit babel plugin",
   "main": "src/index.js",
   "scripts": {
-    "start": "babel ./src/fixtures/icon/code.js --out-dir ./output/",
-    "test": "jest src/tests/"
+    "start": "jest src/",
+    "test": "jest src/"
   },
   "dependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
+    "@tenjojeremy/prettier-config": "^0.5.0",
     "babel-plugin-tester": "^9.0.1",
-    "jest": "^25.5.4"
+    "jest": "^25.5.4",
+    "prettier": "^2.0.5"
   }
 }
