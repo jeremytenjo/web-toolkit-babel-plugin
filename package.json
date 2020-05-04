@@ -4,7 +4,7 @@
   "description": "Web toolkit babel plugin",
   "main": "src/index.js",
   "scripts": {
-    "start": "node ./src/index "
+    "start": "node ./src/index.js"
   },
   "dependencies": {
     "@babel/core": "^7.9.6",

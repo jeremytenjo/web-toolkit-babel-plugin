@@ -1,10 +1,19 @@
-Steps
+# Web-Toolkit builtime optimizer
 
-1. find if file imports icon (@tenjojeremy/web-toolkit/dataDisplay/icon)
-2. find declaration
-3. extract name of icon
-4. replace import with extracted icon name @tenjojeremy/web-toolkit/dataDisplay/icon/library/<name>
+## Icons
 
-- name <name>Icon from ...
+_input_
 
-5. replace decalation name witth and remove name prop
+```js
+import Icon from '@tenjojeremy/web-toolkit/dataDisplay/icon';
+
+<Icon name='google/1' styles={{ color: 'red' }} />;
+```
+
+_output_
+
+```js
+import Google1 from '@tenjojeremy/web-toolkit/dataDisplay/icons/google/1';
+
+<Google1 styles={{ color: 'red' }} />;
+```

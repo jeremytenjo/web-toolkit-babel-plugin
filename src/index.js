@@ -11,6 +11,7 @@ const output = babel.transformSync(input, {
     function handleIcons({ types: t, template }) {
       let root;
       let importedIcons = [];
+
       return {
         visitor: {
           Program(path) {
