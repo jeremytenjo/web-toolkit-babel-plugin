@@ -1,27 +1,39 @@
 const { writeFile } = require('fs');
 const babel = require('@babel/core');
-const t = require('@babel/types');
 const jsxPlugin = require('@babel/plugin-transform-react-jsx');
 
+const uppercaseFirstLetter = require('./utils/uppercaseFirstLetter');
 const input = require('./fixtures/icon/code');
 
 const output = babel.transformSync(input, {
   plugins: [
     jsxPlugin,
-    function handleIcons() {
+    function handleIcons({ types: t, template }) {
+      let root;
       return {
         visitor: {
-          ImportDeclaration(path, state) {
+          Program(path) {
+            root = path;
+          },
+          ImportDeclaration(path) {
             if (path.node.source.value !== '@tenjojeremy/web-toolkit/dataDisplay/icon')
               return;
-
-            // remove Icon import
+            // remove import Icon from '@tenjojeremy/web-toolkit/dataDisplay/icon';
             path.remove();
-            // get icon name
-            // remove icon name="" text
-            // add icon import
-            // path.node.source.value = '';
-            // path.node.specifiers = '';
+          },
+          JSXElement(path) {
+            const element = path.node.openingElement;
+            if (element.name.name !== 'Icon') return;
+            // add icon import using <Icon name="book"/> name property
+            const iconName = element.attributes.find((i) => i.name.name === 'name').value
+              .value;
+            const iconNameDeclarator = uppercaseFirstLetter(iconName.split('/').join(''));
+            const buildImport = template(`
+import ${iconNameDeclarator} from '@tenjojeremy/web-toolkit/dataDisplay/icons/${iconName}';
+`);
+            const importDeclaration = buildImport();
+
+            root.unshiftContainer('body', importDeclaration);
           },
         },
       };
