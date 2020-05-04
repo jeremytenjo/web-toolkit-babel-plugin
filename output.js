@@ -13,6 +13,11 @@ const Button = () => {
     styles: {
       color: 'red'
     }
+  }), /*#__PURE__*/React.createElement(Icon, {
+    name: "google/2",
+    styles: {
+      color: 'red'
+    }
   }));
 };
 

@@ -10,6 +10,7 @@ const output = babel.transformSync(input, {
     jsxPlugin,
     function handleIcons({ types: t, template }) {
       let root;
+      let importedIcons = [];
       return {
         visitor: {
           Program(path) {
@@ -27,6 +28,8 @@ const output = babel.transformSync(input, {
             // add icon import using <Icon name="book"/> name property
             const iconName = element.attributes.find((i) => i.name.name === 'name').value
               .value;
+            const wasImpored = importedIcons.some((i) => i === iconName);
+            if (wasImpored) return;
             const iconNameDeclarator = uppercaseFirstLetter(iconName.split('/').join(''));
             const buildImport = template(`
 import ${iconNameDeclarator} from '@tenjojeremy/web-toolkit/dataDisplay/icons/${iconName}';
@@ -34,6 +37,7 @@ import ${iconNameDeclarator} from '@tenjojeremy/web-toolkit/dataDisplay/icons/${
             const importDeclaration = buildImport();
 
             root.unshiftContainer('body', importDeclaration);
+            importedIcons.push(iconName);
           },
         },
       };

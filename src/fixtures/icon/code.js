@@ -7,6 +7,7 @@ const Button = () => {
     <div>
       <Icon name='google/1' styles={{ color: 'red' }} />
       <Icon name='google/2' styles={{ color: 'red' }} />
+      <Icon name='google/2' styles={{ color: 'red' }} />
     </div>
   );
 };
