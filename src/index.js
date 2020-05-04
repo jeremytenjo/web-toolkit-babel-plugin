@@ -3,7 +3,7 @@ const babel = require('@babel/core');
 const jsxPlugin = require('@babel/plugin-transform-react-jsx');
 
 const uppercaseFirstLetter = require('./utils/uppercaseFirstLetter');
-const input = require('./fixtures/icon/code');
+const input = require('./test/code');
 
 const output = babel.transformSync(input, {
   plugins: [
@@ -45,7 +45,7 @@ import ${iconNameDeclarator} from '@tenjojeremy/web-toolkit/dataDisplay/icons/${
   ],
 });
 
-writeFile('output.js', output.code, function (err) {
+writeFile('src/test/testOutput.js', output.code, function (err) {
   if (err) throw err;
 });
 // console.log(output.code);
